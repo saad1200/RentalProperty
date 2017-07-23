@@ -1,0 +1,125 @@
+<ion-header>
+    <page-nav-bar [title]="'Create rental property'"></page-nav-bar>
+</ion-header>
+
+<h1>Create rental property</h1>
+
+<form [formGroup]="rentalPropertyForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <div class="form-group">
+        <label for="buildingName">Building Name</label>
+        <input class="form-control" formControlName="buildingName">
+
+        <div *ngIf="rentalPropertyForm.get('buildingName').errors &&  
+                    (rentalPropertyForm.get('buildingName').dirty || rentalPropertyForm.get('buildingName').touched)" class="alert alert-danger">
+            <div [hidden]="!rentalPropertyForm.get('buildingName').errors?.required">
+                Building Name is required
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="propertyNumber">Property Number</label>
+        <input class="form-control" formControlName="propertyNumber">
+
+        <div *ngIf="rentalPropertyForm.get('propertyNumber').errors &&  
+                    (rentalPropertyForm.get('propertyNumber').dirty || rentalPropertyForm.get('propertyNumber').touched)"
+            class="alert alert-danger">
+            <div [hidden]="!rentalPropertyForm.get('propertyNumber').errors?.required">
+                Property Number is required
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input class="form-control" formControlName="address">
+
+        <div *ngIf="rentalPropertyForm.get('address').errors &&  
+                    (rentalPropertyForm.get('address').dirty || rentalPropertyForm.get('address').touched)" class="alert alert-danger">
+            <div [hidden]="!rentalPropertyForm.get('address').errors?.required">
+                Address is required
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="tenantName">Tenant Name</label>
+        <input class="form-control" formControlName="tenantName">
+
+        <div *ngIf="rentalPropertyForm.get('tenantName').errors &&  
+                    (rentalPropertyForm.get('tenantName').dirty || rentalPropertyForm.get('tenantName').touched)" class="alert alert-danger">
+            <div [hidden]="!rentalPropertyForm.get('tenantName').errors?.required">
+                Tenant Name is required
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input class="form-control" formControlName="phoneNumber">
+
+        <div *ngIf="rentalPropertyForm.get('phoneNumber').errors &&  
+                    (rentalPropertyForm.get('phoneNumber').dirty || rentalPropertyForm.get('phoneNumber').touched)" class="alert alert-danger">
+            <div [hidden]="!rentalPropertyForm.get('phoneNumber').errors?.required">
+                Phone Number is required
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="anotherPhoneNumber">Another Phone Number</label>
+        <input class="form-control" formControlName="anotherPhoneNumber">
+
+        <div *ngIf="rentalPropertyForm.get('anotherPhoneNumber').errors &&  
+                    (rentalPropertyForm.get('anotherPhoneNumber').dirty || rentalPropertyForm.get('anotherPhoneNumber').touched)"
+            class="alert alert-danger">
+            <div [hidden]="!rentalPropertyForm.get('anotherPhoneNumber').errors?.required">
+                Another Phone Number is required
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="contractStartDate">Contract Start Date</label>
+        <input class="form-control" formControlName="contractStartDate">
+
+        <div *ngIf="rentalPropertyForm.get('contractStartDate').errors &&  
+                    (rentalPropertyForm.get('contractStartDate').dirty || rentalPropertyForm.get('contractStartDate').touched)"
+            class="alert alert-danger">
+            <div [hidden]="!rentalPropertyForm.get('contractStartDate').errors?.required">
+                Contract Start Date is required
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="contractEndDate">Contract End Date</label>
+        <input class="form-control" formControlName="contractEndDate">
+
+        <div *ngIf="rentalPropertyForm.get('contractEndDate').errors &&  
+                    (rentalPropertyForm.get('contractEndDate').dirty || rentalPropertyForm.get('contractEndDate').touched)"
+            class="alert alert-danger">
+            <div [hidden]="!rentalPropertyForm.get('contractEndDate').errors?.required">
+                Contract End Date is required
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="monthlyRent">Monthly Rent Amount</label>
+        <input class="form-control" formControlName="monthlyRent">
+
+        <div *ngIf="rentalPropertyForm.get('monthlyRent').errors &&  
+                    (rentalPropertyForm.get('monthlyRent').dirty || rentalPropertyForm.get('monthlyRent').touched)" class="alert alert-danger">
+            <div [hidden]="!rentalPropertyForm.get('monthlyRent').errors?.required">
+                Monthly Rent Amount is required
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-default" [disabled]="!rentalPropertyForm.valid">New Rental property</button>
+    <button type="button" class="btn btn-default" (click)="revert()">Reset</button>
+</form>
+
+<p> Form value: {{ rentalPropertyForm.value | json }}

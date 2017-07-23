@@ -1,0 +1,12 @@
+<ion-header>
+  <page-nav-bar [title]="'List'"></page-nav-bar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of rentalProperties" >
+      <ion-icon [name]="football" item-left></ion-icon>
+      {{item.buildingName}}
+    </button>
+  </ion-list>
+</ion-content>
