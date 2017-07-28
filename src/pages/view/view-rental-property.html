@@ -1,0 +1,67 @@
+<ion-header>
+    <page-nav-bar [title]="'View rental property'" [updateItem]="rentalProperty.id"></page-nav-bar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label color="primary"  stacked>Building Name:
+            </ion-label>
+            <ion-label>{{rentalProperty.buildingName}}</ion-label>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-label color="primary" stacked>Property Number:
+            </ion-label>
+            <ion-label>{{rentalProperty.propertyNumber}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Address:
+            </ion-label>
+            <ion-label>{{rentalProperty.address}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Tenant Name:
+            </ion-label>
+            <ion-label>{{rentalProperty.tenantName}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Phone Number:
+            </ion-label>
+            <ion-label>{{rentalProperty.phoneNumber}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Another Phone Number:
+            </ion-label>
+            <ion-label>{{rentalProperty.anotherPhoneNumber}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Contract Start Date:
+            </ion-label>
+            <ion-label>{{rentalProperty.contractStartDate}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Contract End Date:
+            </ion-label>
+            <ion-label>{{rentalProperty.contractEndDate}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Monthly Rent Amount:
+            </ion-label>
+            <ion-label>{{rentalProperty.monthlyRent}}</ion-label>
+        </ion-item>
+
+        <ion-item>
+
+        </ion-item>
+
+    </ion-list>
+</ion-content>

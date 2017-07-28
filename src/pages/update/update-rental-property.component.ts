@@ -1,36 +1,56 @@
+import { Subscription } from 'rxjs/Rx';
+import { RentalPropertyState } from './../../models/rental-property-state.model';
+import { Observable } from 'rxjs/Observable';
 import { Guid } from './../../providers/storages/guid';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { dispatch } from '@angular-redux/store';
+import { Component, OnInit, AfterContentInit, OnDestroy } from '@angular/core';
+import { dispatch, select } from '@angular-redux/store';
 
 import { RentalProperty } from '../../models'
 import { RentalPropertyActions } from '../../actions/rental-property.actions'
 
 @Component({
-    templateUrl: './create-rental-property.html'
+    templateUrl: './update-rental-property.html'
 })
 
-export class CreateRentalProperty implements OnInit {
+export class UpdateRentalProperty implements OnInit,  AfterContentInit, OnDestroy {
+    subscription: Subscription;
     rentalPropertyForm: FormGroup;
-
+    rentalProperty: RentalProperty;
+    rentalPropertyId: string;
+    
     constructor(private navController: NavController,
                 private formBulder: FormBuilder, 
                 private rentalPropertyActions: RentalPropertyActions,
-                private guid: Guid){
+                private navParams: NavParams) {
+                    this.rentalPropertyId = navParams.data;
     }
 
-    @dispatch() create(rentalProperty: RentalProperty) {
-        return this.rentalPropertyActions.create(rentalProperty);
+    @select() readonly rentalPropertyState$: Observable<RentalPropertyState>;
+
+    @dispatch() update(rentalProperty: RentalProperty) {
+        return this.rentalPropertyActions.update(rentalProperty);
     }
 
     ngOnInit(){
         this.buildForm();
     }
     
+    ngAfterContentInit() {
+        this.subscription = this.rentalPropertyState$.subscribe(
+            (rentalPropertyState) => {
+                this.rentalProperty = rentalPropertyState.items.find(x=>x.id == this.rentalPropertyId);
+            });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
+
     onSubmit() {
         let rentalProperty: RentalProperty = this.prepareSave(); 
-        this.create(rentalProperty);
+        this.update(rentalProperty);
         this.navController.pop();
     }
 
@@ -39,7 +59,7 @@ export class CreateRentalProperty implements OnInit {
      }
     
     prepareSave() : RentalProperty {
-        return Object.assign({ id: this.guid.get() }, this.rentalPropertyForm.value);
+        return Object.assign({ id: this.rentalProperty.id }, this.rentalPropertyForm.value);
     }
 
     buildForm() {

@@ -12,16 +12,19 @@ import { SQLite } from '@ionic-native/sqlite';
 import { Guid } from '../providers';
 import rootReducer from '../reducers';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { DashboardPage } from '../pages/dashboard/dashboard';
+import { BarChartComponent } from '../pages/chart/bar-chart.component';
 import { ListPage } from '../pages/list/list';
 import { PageNavBar } from '../pages/page-nav-bar.component'; 
-import { AddRentalProperty } from '../pages/create/create-rental-property.component';
+import { CreateRentalProperty } from '../pages/create/create-rental-property.component';
+import { UpdateRentalProperty } from '../pages/update/update-rental-property.component';
+import { ViewRentalProperty } from '../pages/view/view-rental-property.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { RentalPropertyActions } from '../actions/rental-property.actions'
-
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 const enhancer = compose(
   applyMiddleware(thunk, createLogger()),
@@ -38,22 +41,29 @@ export const store: Store<any> = createStore(rootReducer, enhancer);
   declarations: [
     MyApp,
     PageNavBar,
-    HomePage,
+    DashboardPage,
+    BarChartComponent,
     ListPage,
-    AddRentalProperty
+    CreateRentalProperty,
+    UpdateRentalProperty,
+    ViewRentalProperty
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    NgReduxModule
+    NgReduxModule,
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     PageNavBar,
-    HomePage,
+    DashboardPage,
+    BarChartComponent,
     ListPage,
-    AddRentalProperty    
+    CreateRentalProperty,
+    UpdateRentalProperty,   
+    ViewRentalProperty   
   ],
   providers: [
     SQLite,

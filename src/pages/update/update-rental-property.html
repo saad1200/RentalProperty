@@ -1,5 +1,5 @@
 <ion-header>
-    <page-nav-bar [title]="'Create rental property'"></page-nav-bar>
+    <page-nav-bar [title]="'Edit rental property'"></page-nav-bar>
 </ion-header>
 
 <h1>Create rental property</h1>
@@ -14,7 +14,7 @@
                     class="alert alert-danger">*
         </span>
         </ion-label>
-        <ion-input class="form-control" formControlName="buildingName" ></ion-input>
+        <ion-input class="form-control" formControlName="buildingName" [value]="rentalProperty.buildingName"></ion-input>
     </ion-item>
 
 
@@ -25,7 +25,7 @@
                 class="alert alert-danger">*
             </span>
         </ion-label>
-        <ion-input class="form-control" formControlName="propertyNumber"></ion-input>
+        <ion-input class="form-control" formControlName="propertyNumber" [value]="rentalProperty.propertyNumber"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -35,7 +35,7 @@
                 class="alert alert-danger">*
             </span>
         </ion-label>
-        <ion-input class="form-control" formControlName="address"></ion-input>
+        <ion-input class="form-control" formControlName="address" [value]="rentalProperty.address"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -45,7 +45,7 @@
                 class="alert alert-danger">*
             </span>
         </ion-label>
-        <ion-input class="form-control" formControlName="tenantName"></ion-input>
+        <ion-input class="form-control" formControlName="tenantName" [value]="rentalProperty.tenantName"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -55,13 +55,13 @@
                 class="alert alert-danger">*
             </span>
         </ion-label>
-        <ion-input class="form-control" formControlName="phoneNumber"></ion-input>
+        <ion-input class="form-control" formControlName="phoneNumber" [value]="rentalProperty.phoneNumber"></ion-input>
     </ion-item>
 
     <ion-item>
         <ion-label color="primary" for="anotherPhoneNumber" class="center-block">Another Phone Number:
         </ion-label>
-        <ion-input class="form-control" formControlName="anotherPhoneNumber"></ion-input>
+        <ion-input class="form-control" formControlName="anotherPhoneNumber" [value]="rentalProperty.anotherPhoneNumber"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -71,7 +71,7 @@
                 class="alert alert-danger">*
             </span>
         </ion-label>
-        <ion-input class="form-control" formControlName="contractStartDate"></ion-input>
+        <ion-input class="form-control" formControlName="contractStartDate" [value]="rentalProperty.contractStartDate"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -81,7 +81,7 @@
                 class="alert alert-danger">*
             </span>
         </ion-label>
-        <ion-input class="form-control" formControlName="contractEndDate"></ion-input>
+        <ion-input class="form-control" formControlName="contractEndDate" [value]="rentalProperty.contractEndDate"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -91,11 +91,11 @@
                 class="alert alert-danger">*
             </span>
         </ion-label>
-        <ion-input class="form-control" formControlName="monthlyRent"></ion-input>
+        <ion-input class="form-control" formControlName="monthlyRent" [value]="rentalProperty.monthlyRent"></ion-input>
     </ion-item>
 
     <ion-item>
-            <button type="submit" ion-button round [disabled]="!rentalPropertyForm.valid">Create</button>
+            <button type="submit" ion-button round [disabled]="!rentalPropertyForm.valid">Edit</button>
     </ion-item>
 
     </ion-list>

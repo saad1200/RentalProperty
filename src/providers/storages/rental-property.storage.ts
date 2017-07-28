@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Database } from './database';
 import { RentalProperty } from '../../models/rental-property.model';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { SQLiteObject } from '@ionic-native/sqlite';
 
 
 @Injectable()

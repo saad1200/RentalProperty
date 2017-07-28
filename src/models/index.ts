@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import { RentalProperty } from './rental-property.model';
 import { RentalPropertyState } from './rental-property-state.model';
 

@@ -1,8 +1,9 @@
+import { ViewRentalProperty } from './../view/view-rental-property.component';
 import { Component, AfterContentInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { NavController, NavParams } from 'ionic-angular';
-import { NgRedux, select, DevToolsExtension, dispatch } from '@angular-redux/store';
+import { select } from '@angular-redux/store';
 
 import { RentalProperty } from './../../models/rental-property.model';
 import { RentalPropertyState } from './../../models/rental-property-state.model';
@@ -18,18 +19,21 @@ export class ListPage implements AfterContentInit, OnDestroy {
 
   @select() readonly rentalPropertyState$: Observable<RentalPropertyState>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public naController: NavController, public navParams: NavParams) {
   }
 
   ngAfterContentInit() {
     this.subscription = this.rentalPropertyState$.subscribe(
       (rentalPropertyState) => {
-        console.log('ngAfterContentInit rentalProperties: ', rentalPropertyState);
         this.rentalProperties = rentalPropertyState.items;
       });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  selectItem(item) {
+    this.naController.push(ViewRentalProperty, item.id);
   }
 }

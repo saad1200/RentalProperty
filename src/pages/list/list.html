@@ -3,10 +3,36 @@
 </ion-header>
 
 <ion-content>
+
   <ion-list>
-    <button ion-item *ngFor="let item of rentalProperties" >
-      <ion-icon [name]="football" item-left></ion-icon>
-      {{item.buildingName}}
+    <button ion-item *ngFor="let item of rentalProperties" (click)="selectItem(item)">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            {{item.tenantName}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{item.buildingName}}
+          </ion-col>
+          <ion-col>
+            {{item.address}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{item.monthlyRent}}
+          </ion-col>
+          <ion-col>
+            {{item.contractStartDate}}
+          </ion-col>
+          <ion-col>
+            {{item.contractEndDate}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>      
     </button>
   </ion-list>
 </ion-content>
