@@ -4,16 +4,16 @@ import { RentalProperty } from './../models/rental-property.model';
 
 export const CREATE_RENTAL_PROPERTY = 'CREATE_RENTAL_PROPERTY';
 export const UPDATE_RENTAL_PROPERTY = 'UPDATE_RENTAL_PROPERTY';
-export const REMOVE_RENTAL_PROPERTY = 'REMOVE_RENTAL_PROPERTY';
+export const DELETE_RENTAL_PROPERTY = 'DELETE_RENTAL_PROPERTY';
 
 @Injectable()
 export class RentalPropertyActions {
 
-    public remove(rentalProperty: RentalProperty) {
+    public delete(id: string) {
         return (dispatch: any) => {
             dispatch({
-                type: REMOVE_RENTAL_PROPERTY,
-                payload: rentalProperty
+                type: DELETE_RENTAL_PROPERTY,
+                payload: id
             });
         };
     }

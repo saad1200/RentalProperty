@@ -1,8 +1,8 @@
 <ion-header>
-    <page-nav-bar [title]="'View rental property'" [updateItem]="rentalProperty.id"></page-nav-bar>
+    <page-nav-bar [title]="'View rental property'" [itemId]="rentalPropertyId"></page-nav-bar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="rentalProperty">
     <ion-list>
         <ion-item>
             <ion-label color="primary"  stacked>Building Name:

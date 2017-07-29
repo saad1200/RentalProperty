@@ -3,9 +3,14 @@
 </ion-header>
 
 <ion-content>
+  <button ion-button secondary (click)="goToCreateRentalProperty()" *ngIf="!rentalProperties">Please Add property to see the monthly reports</button>
 
-  <ion-list>
-    <button ion-item *ngFor="let item of rentalProperties" (click)="selectItem(item)">
+  <ion-list *ngIf="rentalProperties">
+
+    <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+
+
+    <button ion-item *ngFor="let item of filteredRentalProperties" (click)="selectItem(item)">
 
       <ion-grid>
         <ion-row>

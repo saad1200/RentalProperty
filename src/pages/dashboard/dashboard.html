@@ -3,6 +3,6 @@
 </ion-header>
 
 <ion-content padding>
-  <bar-chart></bar-chart>
-  <button ion-button secondary (click)="goToCreateRentalProperty()">Please Add property to see the monthly reports</button>
+  <bar-chart [rentalProperties]="rentalProperties" *ngIf="rentalProperties"></bar-chart>
+  <button ion-button secondary (click)="goToCreateRentalProperty()" *ngIf="!rentalProperties">Please Add property to see the monthly reports</button>
 </ion-content>

@@ -1,6 +1,8 @@
+import { RentalPropertyActions } from './../actions/rental-property.actions';
 import { RentalProperty } from './../models/rental-property.model';
 import { NavController } from 'ionic-angular';
 import { Component, Input } from '@angular/core';
+import { dispatch } from '@angular-redux/store';
 
 import { CreateRentalProperty } from '../pages/create/create-rental-property.component';
 import { UpdateRentalProperty } from '../pages/update/update-rental-property.component';
@@ -12,14 +14,21 @@ import { UpdateRentalProperty } from '../pages/update/update-rental-property.com
             <ion-icon name="menu"></ion-icon>
             </button>
             <ion-title>{{title}}</ion-title>
+            
             <ion-buttons end>
 
-                <button ion-button *ngIf="!updateItem" (click)="goToCreateRentalProperty()" >
+                <button ion-button *ngIf="!itemId" (click)="goToCreateRentalProperty()" >
                     Create
                 </button>
 
-                <button ion-button  *ngIf="updateItem" (click)="goToUpdateRentalProperty()">
+                <button ion-button  *ngIf="itemId" (click)="goToUpdateRentalProperty()">
                     Update
+                </button>
+
+                <button ion-button  *ngIf="itemId" > | </button>
+
+                <button ion-button  *ngIf="itemId" (click)="goToDeleteRentalProperty()">
+                    Delete
                 </button>
 
             </ion-buttons>
@@ -29,16 +38,24 @@ import { UpdateRentalProperty } from '../pages/update/update-rental-property.com
 
 export class PageNavBar {
     @Input() title: string;
-    @Input() updateItem: RentalProperty;
+    @Input() itemId: string;
 
-    constructor(private nav: NavController){
+    @dispatch() delete(id: string) {
+        return this.rentalPropertyActions.delete(id);
+    }
+
+    constructor(private navController: NavController, private rentalPropertyActions: RentalPropertyActions){
     }
 
     goToCreateRentalProperty() {
-        this.nav.push(CreateRentalProperty);
+        this.navController.push(CreateRentalProperty);
     }
 
     goToUpdateRentalProperty() {
-        this.nav.push(UpdateRentalProperty, this.updateItem);
+        this.navController.push(UpdateRentalProperty, this.itemId);
+    }
+
+    goToDeleteRentalProperty() {
+        this.delete(this.itemId);
     }
 }

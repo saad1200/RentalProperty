@@ -1,3 +1,4 @@
+import { CreateRentalProperty } from './../create/create-rental-property.component';
 import { ViewRentalProperty } from './../view/view-rental-property.component';
 import { Component, AfterContentInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
@@ -16,16 +17,18 @@ export class ListPage implements AfterContentInit, OnDestroy {
   subscription: Subscription;
   selectedItem: any;
   rentalProperties: Array<RentalProperty>;
+  filteredRentalProperties: Array<RentalProperty>;
 
   @select() readonly rentalPropertyState$: Observable<RentalPropertyState>;
 
-  constructor(public naController: NavController, public navParams: NavParams) {
+  constructor(private navController: NavController, private navParams: NavParams) {
   }
 
   ngAfterContentInit() {
     this.subscription = this.rentalPropertyState$.subscribe(
       (rentalPropertyState) => {
         this.rentalProperties = rentalPropertyState.items;
+        this.filteredRentalProperties = rentalPropertyState.items;
       });
   }
 
@@ -34,6 +37,19 @@ export class ListPage implements AfterContentInit, OnDestroy {
   }
 
   selectItem(item) {
-    this.naController.push(ViewRentalProperty, item.id);
+    this.navController.push(ViewRentalProperty, item.id);
+  }
+
+  goToCreateRentalProperty(){
+    this.navController.push(CreateRentalProperty)
+  }
+
+  search(event){
+    this.filteredRentalProperties = this.rentalProperties.filter((rentalProperty: RentalProperty) => {
+      let searchTerm = event.target.value.toLowerCase();
+      return rentalProperty.tenantName.toLowerCase().indexOf(searchTerm) >= 0 ||
+        rentalProperty.address.toLowerCase().indexOf(searchTerm) >= 0 ||
+        rentalProperty.buildingName.toLowerCase().indexOf(searchTerm) >= 0;
+    });
   }
 }

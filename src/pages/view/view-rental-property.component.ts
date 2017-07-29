@@ -31,7 +31,12 @@ export class ViewRentalProperty implements AfterContentInit, OnDestroy {
     ngAfterContentInit() {
         this.subscription = this.rentalPropertyState$.subscribe(
             (rentalPropertyState) => {
+                
                 this.rentalProperty = rentalPropertyState.items.find(x=>x.id == this.rentalPropertyId);
+                
+                if(!this.rentalProperty) {
+                    this.navController.pop();
+                }
             });
     }
 

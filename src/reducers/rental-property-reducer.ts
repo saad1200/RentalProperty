@@ -1,4 +1,4 @@
-import { CREATE_RENTAL_PROPERTY, UPDATE_RENTAL_PROPERTY, REMOVE_RENTAL_PROPERTY } from '../actions/rental-property.actions';
+import { CREATE_RENTAL_PROPERTY, UPDATE_RENTAL_PROPERTY, DELETE_RENTAL_PROPERTY } from '../actions/rental-property.actions';
 import { RentalPropertyState } from './../models/rental-property-state.model';
 
 const initialState: RentalPropertyState = {
@@ -17,10 +17,10 @@ export default function rentalPropertyReducer(state: RentalPropertyState = initi
       ...state,
       items: state.items.map( x => x.id === action.payload.id ? action.payload : x)
     };
-  case REMOVE_RENTAL_PROPERTY:
+  case DELETE_RENTAL_PROPERTY:
     return {
       ...state,
-      items: state.items.filter( x => x.id !== action.payload.id)
+      items: state.items.filter( x => x.id !== action.payload)
     };
   default:
     return state;
